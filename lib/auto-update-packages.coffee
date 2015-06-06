@@ -8,14 +8,19 @@ getFs = ->
 NAMESPACE = 'auto-update-packages'
 CONFIG_KEY_INTERVAL_MINUTES = 'intervalMinutes'
 
-CONFIG_DEFAULTS = {}
-CONFIG_DEFAULTS[CONFIG_KEY_INTERVAL_MINUTES] = 6 * 60
-
-WARMUP_WAIT = 10 * 1000
 MINIMUM_AUTO_UPDATE_BLOCK_DURATION_MINUTES = 15
 
+CONFIG_DEFAULTS = { }
+CONFIG_DEFAULTS[CONFIG_KEY_INTERVAL_MINUTES] = {
+  type: 'integer',
+  default: 6 * 60,
+  minimum: MINIMUM_AUTO_UPDATE_BLOCK_DURATION_MINUTES
+}
+
+WARMUP_WAIT = 10 * 1000
+
 module.exports =
-  configDefaults: CONFIG_DEFAULTS
+  config: CONFIG_DEFAULTS
 
   activate: (state) ->
     @updateNowCommand = atom.commands.add 'atom-workspace', "#{NAMESPACE}:update-now", =>
