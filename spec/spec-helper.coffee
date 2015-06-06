@@ -1,9 +1,6 @@
-{WorkspaceView} = require 'atom'
-
 originalPackageConfig = atom.config.get('auto-update-packages')
 
 window.prepareCleanEnvironment = ->
-  atom.workspaceView = new WorkspaceView
   waitsForPromise ->
     atom.packages.activatePackage('auto-update-packages')
   runs ->
